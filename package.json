@@ -1,0 +1,28 @@
+{
+  "name": "remaining-time-cli",
+  "version": "1.0.0",
+  "description": "A CLI tool that displays the remaining time for a specified period.",
+  "license": "ISC",
+  "type": "module",
+  "bin": {
+    "remaining": "bin/remaining.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishizawamotoki/remaining-time-cli.git"
+  },
+  "scripts": {
+    "lint": "prettier --check . && eslint ."
+  },
+  "dependencies": {
+    "date-fns": "^4.4.0",
+    "yargs": "^18.1.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.8.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.8.0",
+    "prettier": "3.9.6"
+  }
+}
