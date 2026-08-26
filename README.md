@@ -8,11 +8,11 @@ A CLI tool that displays the remaining time for a specified period.
 npm install remaining-time-cli
 ```
 
+## Usage
+
 ```
 npx remaining
 ```
-
-## Usage
 
 **Note:** The current day and hour are counted as full units of remaining time. For example, if the CLI is run at 15:30, the entire 15:00–16:00 hour is counted as remaining time.
 
