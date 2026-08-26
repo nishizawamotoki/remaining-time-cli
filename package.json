@@ -1,6 +1,6 @@
 {
   "name": "remaining-time-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool that displays the remaining time for a specified period.",
   "license": "ISC",
   "type": "module",

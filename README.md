@@ -14,6 +14,8 @@ npx remaining
 
 ## Usage
 
+**Note:** The current day and hour are counted as full units of remaining time. For example, if the CLI is run at 15:30, the entire 15:00–16:00 hour is counted as remaining time.
+
 ### `-p=<type>`, `--period=<type>`
 
 Specifies the period to display. The available values are `day`, `week`, `month`, or `year`. The default is `week`. The week starts on Monday.
@@ -36,7 +38,7 @@ Hides the cell-based visualization.
 
 ## Examples
 
-All examples below are based on the current time of 15:00 on August 26, 2026.
+All examples below were run between 15:00 and 15:59 on August 26, 2026.
 
 Display the remaining time for this week (August 24–30).
 
