@@ -28,7 +28,7 @@ Specifies the time unit. The available values are `hour` or `day`. The default i
 
 Limits the period to weekdays or weekends. The available values are `weekday` or `weekend`.
 
-### `-b=<hours-per-day>`, `--block=<hours-per-day>`
+### `-b=<hours-per-day>`, `--block-hours=<hours-per-day>`
 
 Blocks unavailable time from the following day onward (i.e., subtracts unavailable time from the remaining time). Blocked time is displayed as colored cells. `<hours-per-day>` is the number of unavailable hours per day. This option cannot be used with `-u day`.
 
