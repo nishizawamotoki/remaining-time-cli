@@ -10,9 +10,6 @@ import {
   startOfDay,
 } from "date-fns";
 
-const INVALID_DATE_ORDER_MESSAGE =
-  "laterDate must be later than or equal to earlierDate";
-
 export function isWeekday(date) {
   return !isWeekend(date);
 }
@@ -38,16 +35,12 @@ export function getWeekendCount(startDate, endDate) {
 }
 
 export function differenceInCalendarDays(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
   return dateFnsDifferenceInCalendarDays(laterDate, earlierDate);
 }
 
 export function differenceInHours(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
   return dateFnsDifferenceInHours(laterDate, earlierDate);
 }
 
@@ -55,9 +48,7 @@ export function differenceInHours(laterDate, earlierDate) {
 // differenceInWeekdayHours(new Date(2026, 7, 18, 2, 30), new Date(2026, 7, 17, 2, 30)) → 23
 // differenceInHours(new Date(2026, 7, 18, 2, 30), new Date(2026, 7, 17, 2, 30)) → 24
 export function differenceInWeekdayHours(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
 
   let totalHours = 0;
   let currentDate = earlierDate;
@@ -76,9 +67,7 @@ export function differenceInWeekdayHours(laterDate, earlierDate) {
 }
 
 export function differenceInWeekendHours(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
 
   let totalHours = 0;
   let currentDate = earlierDate;
@@ -97,16 +86,12 @@ export function differenceInWeekendHours(laterDate, earlierDate) {
 }
 
 export function differenceInWeekdayDays(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
   return differenceInBusinessDays(laterDate, earlierDate);
 }
 
 export function differenceInWeekendDays(laterDate, earlierDate) {
-  if (compareAsc(laterDate, earlierDate) === -1) {
-    throw new Error(INVALID_DATE_ORDER_MESSAGE);
-  }
+  validateDateOrder(laterDate, earlierDate);
 
   // differenceInBusinessDays のロジックを参考に実装
   // https://github.com/date-fns/date-fns/blob/8aa0373ece55184e7817d4a3bbeee65eab3f267c/pkgs/core/src/differenceInBusinessDays/index.ts
@@ -121,4 +106,10 @@ export function differenceInWeekendDays(laterDate, earlierDate) {
     movingDate = addDays(movingDate, 1);
   }
   return result;
+}
+
+function validateDateOrder(later, earlier) {
+  if (compareAsc(later, earlier) === -1) {
+    throw new Error("laterDate must be later than or equal to earlierDate");
+  }
 }
