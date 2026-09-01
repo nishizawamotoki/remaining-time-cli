@@ -14,12 +14,11 @@ export default class App {
   #timeUnit;
   #timeCalculator;
   #isHideCells;
-  #blockHoursPerDay;
 
   constructor(argv) {
     const options = this.#buildOptions(argv);
     this.#isHideCells = options.hideCells;
-    this.#blockHoursPerDay = options.blockHours;
+    const blockHoursPerDay = options.blockHours;
 
     const now = new Date();
     switch (options.period) {
@@ -48,7 +47,7 @@ export default class App {
     const timeCalculatorArgs = {
       period: this.#period,
       timeUnit: this.#timeUnit,
-      blockHoursPerDay: this.#blockHoursPerDay ?? 0,
+      blockHoursPerDay: blockHoursPerDay ?? 0,
     };
     switch (options.filter) {
       case "weekday":
