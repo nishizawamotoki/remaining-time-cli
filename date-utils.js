@@ -18,20 +18,12 @@ export function startOfNextDay(date) {
   return startOfDay(addDays(date, 1));
 }
 
-export function getWeekdayCount(startDate, endDate) {
+export function getFilteredDayCount(startDate, endDate, dateFilter) {
   const interval = eachDayOfInterval({
     start: startDate,
     end: endDate,
   });
-  return interval.filter((date) => isWeekday(date)).length;
-}
-
-export function getWeekendCount(startDate, endDate) {
-  const interval = eachDayOfInterval({
-    start: startDate,
-    end: endDate,
-  });
-  return interval.filter((date) => isWeekend(date)).length;
+  return interval.filter(dateFilter).length;
 }
 
 export function differenceInCalendarDays(laterDate, earlierDate) {
