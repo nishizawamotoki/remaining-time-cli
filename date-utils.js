@@ -18,7 +18,7 @@ export function startOfNextDay(date) {
   return startOfDay(addDays(date, 1));
 }
 
-export function getFilteredDayCount(startDate, endDate, dateFilter) {
+export function getMatchingDayCount(startDate, endDate, dateFilter) {
   const interval = eachDayOfInterval({
     start: startDate,
     end: endDate,

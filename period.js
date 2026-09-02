@@ -11,7 +11,7 @@ import {
   startOfYear,
   endOfDay,
 } from "date-fns";
-import { isWeekday, getFilteredDayCount } from "./date-utils.js";
+import { isWeekday, getMatchingDayCount } from "./date-utils.js";
 
 class Period {
   #now;
@@ -131,11 +131,11 @@ export class Month extends Period {
   }
 
   _defaultWeekdayCount(now) {
-    return getFilteredDayCount(startOfMonth(now), endOfMonth(now), isWeekday);
+    return getMatchingDayCount(startOfMonth(now), endOfMonth(now), isWeekday);
   }
 
   _defaultWeekendCount(now) {
-    return getFilteredDayCount(startOfMonth(now), endOfMonth(now), isWeekend);
+    return getMatchingDayCount(startOfMonth(now), endOfMonth(now), isWeekend);
   }
 }
 
@@ -157,10 +157,10 @@ export class Year extends Period {
   }
 
   _defaultWeekdayCount(now) {
-    return getFilteredDayCount(startOfYear(now), endOfYear(now), isWeekday);
+    return getMatchingDayCount(startOfYear(now), endOfYear(now), isWeekday);
   }
 
   _defaultWeekendCount(now) {
-    return getFilteredDayCount(startOfYear(now), endOfYear(now), isWeekend);
+    return getMatchingDayCount(startOfYear(now), endOfYear(now), isWeekend);
   }
 }
