@@ -37,35 +37,20 @@ export function differenceInHours(laterDate, earlierDate) {
 }
 
 // earlierDate の分・秒は切り上げ、laterDate の分・秒は切り捨てて計算しているため differenceInHours の結果と異なる場合がある
-// differenceInWeekdayHours(new Date(2026, 7, 18, 2, 30), new Date(2026, 7, 17, 2, 30)) → 23
+// differenceInHoursOfMatchingDay(new Date(2026, 7, 18, 2, 30), new Date(2026, 7, 17, 2, 30), isWeekday) → 23
 // differenceInHours(new Date(2026, 7, 18, 2, 30), new Date(2026, 7, 17, 2, 30)) → 24
-export function differenceInWeekdayHours(laterDate, earlierDate) {
+export function differenceInHoursOfMatchingDay(
+  laterDate,
+  earlierDate,
+  dateFilter,
+) {
   validateDateOrder(laterDate, earlierDate);
 
   let totalHours = 0;
   let currentDate = earlierDate;
 
   while (currentDate < laterDate) {
-    if (isWeekday(currentDate)) {
-      totalHours += differenceInHours(
-        Math.min(laterDate, startOfNextDay(currentDate)),
-        currentDate,
-      );
-    }
-    currentDate = startOfNextDay(currentDate);
-  }
-
-  return totalHours;
-}
-
-export function differenceInWeekendHours(laterDate, earlierDate) {
-  validateDateOrder(laterDate, earlierDate);
-
-  let totalHours = 0;
-  let currentDate = earlierDate;
-
-  while (currentDate < laterDate) {
-    if (isWeekend(currentDate)) {
+    if (dateFilter(currentDate)) {
       totalHours += differenceInHours(
         Math.min(laterDate, startOfNextDay(currentDate)),
         currentDate,

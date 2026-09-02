@@ -1,10 +1,11 @@
+import { isWeekend } from "date-fns";
 import {
   differenceInCalendarDays,
   differenceInHours,
-  differenceInWeekdayHours,
-  differenceInWeekendHours,
   differenceInWeekdayDays,
   differenceInWeekendDays,
+  differenceInHoursOfMatchingDay,
+  isWeekday,
 } from "./date-utils.js";
 
 class TimeUnit {
@@ -57,11 +58,13 @@ export class Hourly extends TimeUnit {
   }
 
   _defaultDifferenceInWeekdayTime() {
-    return differenceInWeekdayHours;
+    return (laterDate, earlierDate) =>
+      differenceInHoursOfMatchingDay(laterDate, earlierDate, isWeekday);
   }
 
   _defaultDifferenceInWeekendTime() {
-    return differenceInWeekendHours;
+    return (laterDate, earlierDate) =>
+      differenceInHoursOfMatchingDay(laterDate, earlierDate, isWeekend);
   }
 }
 
